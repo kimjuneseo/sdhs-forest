@@ -11,6 +11,8 @@ class View{
     function login(){
         view('login');
     }
-    
+    function write(){
+        view("itemWrite");
+    }
 }
 

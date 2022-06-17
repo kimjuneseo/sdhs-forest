@@ -9,8 +9,6 @@ class DB{
         }
         return self::$db;
     }
-
-
 }
 
 function query($sql, $data=[]){

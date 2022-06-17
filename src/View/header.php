@@ -12,7 +12,9 @@
         <img src="/upload/<?=$_SESSION['user']->profile?>" alt="">
         <h2><?= $_SESSION['user']->name ?></h2>
         <p><a href="/logout">로그아웃</a></p>
+        <p><a href="/write">글쓰기</a></p>
     <?php else :?>
         <p><a href="/login">로그인</a></p>
         <p><a href="/signup">회원가입</a></p>
     <?php endif ;?>
+    
