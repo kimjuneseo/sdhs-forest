@@ -3,7 +3,9 @@
 namespace src\Controller;
 class View{
     function index(){
-        view('index');
+        $content = fetchAll("select * from content_tbl order by idx desc");
+
+        view('index', ["content"=>$content]);
     }
     function signup(){
         view('signup');

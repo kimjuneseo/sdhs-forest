@@ -11,17 +11,8 @@ class Item{
         }
         
         $user_idx = $_SESSION['user']->idx;
-        
-        // var_dump(count($_FILES['img']));
-        // foreach($_FILES as $item){
-        //     $fileType = explode("/",$item['img']['type']);
-        //     $resFile = "./upload/$imgName.$fileType[1]";
-        //     var_dump($item);
-        // }
-        
-        query("insert into `content_tbl` (user_idx, title, content, imgs) values(?,?,?)", [$user_idx, $title, $content]);
-        
-        
-        
+        var_dump($content);
+        query("insert into `content_tbl` (`user_idx`, `title`, `content`) values (?,?,?)", [$user_idx, $title, $content]);                
+        back("글 등록이 완료 되었습니다");
     }
 }
