@@ -26,10 +26,18 @@ function go($fileName, $text=''){
     script("location.replace('$fileName'); ");
 }
 function back($text = ''){
-    alert($t);
+    alert($text);
     script("history.back();");
 }
 
 function ss() {
     return isset($_SESSION['user']) ? $_SESSION['user'] : false;
-  }
+}
+
+function loginCheck(){
+    if(!ss()){
+        back('로그인 후 이용가능한 서비스 입니다.');
+        return false;
+    }
+    return true;
+}

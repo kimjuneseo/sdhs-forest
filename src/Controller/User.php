@@ -5,7 +5,7 @@ namespace src\Controller;
 class User{
 
     function logout(){
-        $_SESSION['user'] = '';
+        unset( $_SESSION['user'] );
         go("/", "로그아웃 되었습니다");
     }
     function signUp(){
@@ -22,14 +22,19 @@ class User{
             return;
         }
         
-     
-        $imgName = date("Ymdis");
-        $fileType = explode("/",$_FILES['img']['type']);
-        $resFile = "./upload/$imgName.$fileType[1]";
-        $tmp = $_FILES['img']['tmp_name'];
-        move_uploaded_file($tmp, $resFile);
-        query("insert into user_tbl (id, pwd, name,profile)values(?,?,?,?)", [$id, $pwd, $name, "$imgName.$fileType[1]"]);
-        go("/", "회원가입이 되었습니다");
+        if($_FILES["img"]["name"] != ''){
+            $imgName = date("Ymdis");
+            $fileType = explode("/",$_FILES['img']['type']);
+            $resFile = "./upload/$imgName.$fileType[1]";
+            $tmp = $_FILES['img']['tmp_name'];
+            move_uploaded_file($tmp, $resFile);
+            query("insert into user_tbl (id, pwd, name,profile)values(?,?,?,?)", [$id, $pwd, $name, "$imgName.$fileType[1]"]);
+        }else{
+            query("insert into user_tbl (id, pwd, name,profile)values(?,?,?,'user.jpg')", [$id, $pwd, $name]);    
+        }
+        
+        
+        // go("/", "회원가입이 되었습니다");
     }
 
     function login(){
@@ -37,6 +42,12 @@ class User{
         
         if($id == '' || $pwd == '' ){
             back("alert('공백이 될 수 없습니다.')");
+            return;
+        }
+        
+        if($id == 'ADMIN' || $pwd == '1234' ){
+            back("관리자로 로그인 되었습니다");
+            $_SESSION['user'] = "admin";
             return;
         }
         $check = fetch("select * from `user_tbl` where id = ? and pwd = ?", [$id, $pwd]); 
