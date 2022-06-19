@@ -34,7 +34,7 @@ class User{
         }
         
         
-        // go("/", "회원가입이 되었습니다");
+        go("/", "회원가입이 되었습니다");
     }
 
     function login(){
@@ -45,11 +45,6 @@ class User{
             return;
         }
         
-        if($id == 'ADMIN' || $pwd == '1234' ){
-            back("관리자로 로그인 되었습니다");
-            $_SESSION['user'] = "admin";
-            return;
-        }
         $check = fetch("select * from `user_tbl` where id = ? and pwd = ?", [$id, $pwd]); 
         if(!$check){
             back("아이디와 비밀번호를 확인해주세요");
