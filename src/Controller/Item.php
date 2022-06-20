@@ -16,15 +16,21 @@ class Item{
             go("/","글 등록이 완료 되었습니다");
         }
     }
-
+    function 
     function more($parm){
         $item = fetch("select * from `content_tbl` where idx = ?", [$parm[1]]);
-        $comment = fetchAll("SELECT name,content, profile FROM `comment_tbl` a INNER JOIN `user_tbl` b on a.user_idx = b.idx WHERE a.item_idx = ?", [$parm[1]]);
+        $comment = fetchAll("SELECT `name`,`content`, `profile` FROM `comment_tbl` a INNER JOIN `user_tbl` b on a.user_idx = b.idx WHERE a.item_idx = ?", [$parm[1]]);
+
+        $allGood = fetch("SELECT COUNT(*) cnt from `good_tbl` where content_idx = ?",  [$parm[1]]);
         $chk =  false;
+        $meGood = false;
         if(ss()){
             $chk = $_SESSION['user']->idx == $item->user_idx;
+            $checkMe = fetch("SELECT * FROM `good_tbl` where user_idx = ? and content_idx = ?", [$_SESSION['user']->idx, $parm[1]]);
+            var_dump($checkMe);
+            $meGood = $checkMe ? true : false;
         }
-        view("more", ["item"=>$item, "chk"=>$chk, "comment"=>$comment]);
+        view("more", ["item"=>$item, "chk"=>$chk, "comment"=>$comment, "meGood" => $meGood, "allGood" => $allGood->cnt]);
     }
 
     // 수정 삭제시 본인 인지 다시 확인

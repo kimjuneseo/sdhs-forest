@@ -1,6 +1,10 @@
-<?php foreach($content as $item) :?>
+<section id="mainPage">
+
+
+    <?php foreach($content as $item) :?>
     <a href="/item/more/<?=$item->idx?>">
         <p><?=$item->title?></p>
         <p><?=$item->content?></p>
     </a>
-<?php endforeach;?>
+    <?php endforeach;?>
+</section>
