@@ -13,7 +13,7 @@ class Item{
             
             $user_idx = $_SESSION['user']->idx;
             query("insert into `content_tbl` (`user_idx`, `title`, `content`) values (?,?,?)", [$user_idx, $title, $content]);                
-            back("글 등록이 완료 되었습니다");
+            go("/","글 등록이 완료 되었습니다");
         }
     }
 

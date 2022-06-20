@@ -1,0 +1,1 @@
+const get = (url, data) => fetch(url).then 

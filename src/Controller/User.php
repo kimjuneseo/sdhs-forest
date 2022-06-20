@@ -16,8 +16,7 @@ class User{
             back("alert('공백이 될 수 없습니다.')");
             return;
         }
-        
-        if($checkId == $id){
+        if($checkId->id == $id){
             back("alert('사용할 수 없는 아이디 입니다.');");
             return;
         }
@@ -51,7 +50,6 @@ class User{
             return;
         }
         $_SESSION['user'] = $check;
-        var_dump($_SESSION['user']->profile);
 
         go("/", "로그인 되었습니다");
         
