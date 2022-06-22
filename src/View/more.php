@@ -4,7 +4,7 @@
     <p><?=$item->content?></p>
 
     <!-- 본일 글일때 수정 삭제 -->
-    <?php if($chk):?>
+    <?php if($chk):?> 
     <div> <?=$_SESSION['user']->idx?> </div>
     <div>삭제</div>
     <div>수정</div>
