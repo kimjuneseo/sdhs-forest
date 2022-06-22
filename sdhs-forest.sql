@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- 생성 시간: 22-06-19 17:09
--- 서버 버전: 10.4.20-MariaDB
--- PHP 버전: 8.0.9
+-- 생성 시간: 22-06-22 06:01
+-- 서버 버전: 10.4.24-MariaDB
+-- PHP 버전: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,19 +58,35 @@ CREATE TABLE `content_tbl` (
   `user_idx` int(11) NOT NULL,
   `title` text NOT NULL,
   `content` text NOT NULL,
-  `imgs` text NOT NULL
+  `img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- 테이블의 덤프 데이터 `content_tbl`
 --
 
-INSERT INTO `content_tbl` (`idx`, `user_idx`, `title`, `content`, `imgs`) VALUES
-(1, 3, '123', '123', ''),
-(2, 3, '123', '123', ''),
-(3, 3, '김준서', '짱짱', ''),
-(4, 6, '김준서', '앙기보', ''),
-(5, 6, '1231231231', '123123123123', '');
+INSERT INTO `content_tbl` (`idx`, `user_idx`, `title`, `content`, `img`) VALUES
+(1, 3, '김준서', '김준서', ''),
+(2, 1, '1', '1', '');
+
+-- --------------------------------------------------------
+
+--
+-- 테이블 구조 `good_tbl`
+--
+
+CREATE TABLE `good_tbl` (
+  `idx` int(100) NOT NULL,
+  `user_idx` int(100) NOT NULL,
+  `content_idx` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 테이블의 덤프 데이터 `good_tbl`
+--
+
+INSERT INTO `good_tbl` (`idx`, `user_idx`, `content_idx`) VALUES
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -91,25 +107,26 @@ CREATE TABLE `user_tbl` (
 --
 
 INSERT INTO `user_tbl` (`idx`, `id`, `pwd`, `name`, `profile`) VALUES
-(3, '1', '1', '1', '202206165354jpeg'),
-(4, '1', '1', '3', '202206165453.jpeg'),
-(5, '3', '3', '3', '202206165848.jpeg'),
-(14, '김준서1233', '김준서', '김준서', 'user.jpg');
+(1, '1', '1', '김준서', '202206174101.jpeg'),
+(2, '1', '1', '1', 'user.jpg'),
+(3, '123', '123', '123', 'user.jpg'),
+(4, '123', '123', '123', 'user.jpg'),
+(5, '123', '123', '123', 'user.jpg');
 
 --
 -- 덤프된 테이블의 인덱스
 --
 
 --
--- 테이블의 인덱스 `comment_tbl`
---
-ALTER TABLE `comment_tbl`
-  ADD PRIMARY KEY (`idx`);
-
---
 -- 테이블의 인덱스 `content_tbl`
 --
 ALTER TABLE `content_tbl`
+  ADD PRIMARY KEY (`idx`);
+
+--
+-- 테이블의 인덱스 `good_tbl`
+--
+ALTER TABLE `good_tbl`
   ADD PRIMARY KEY (`idx`);
 
 --
@@ -123,22 +140,22 @@ ALTER TABLE `user_tbl`
 --
 
 --
--- 테이블의 AUTO_INCREMENT `comment_tbl`
---
-ALTER TABLE `comment_tbl`
-  MODIFY `idx` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- 테이블의 AUTO_INCREMENT `content_tbl`
 --
 ALTER TABLE `content_tbl`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- 테이블의 AUTO_INCREMENT `good_tbl`
+--
+ALTER TABLE `good_tbl`
+  MODIFY `idx` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- 테이블의 AUTO_INCREMENT `user_tbl`
 --
 ALTER TABLE `user_tbl`
-  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idx` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
