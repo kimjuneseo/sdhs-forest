@@ -1,9 +1,11 @@
-<section id="morePage">
+
+<section id="morePage" data-idx="<?=$item->idx?>">
     <p><?=$item->title?></p>
     <p><?=$item->content?></p>
 
     <!-- 본일 글일때 수정 삭제 -->
     <?php if($chk):?>
+    <div> <?=$_SESSION['user']->idx?> </div>
     <div>삭제</div>
     <div>수정</div>
     <?php else:?>
@@ -30,3 +32,7 @@
     <label for="good">❤</label>
 
 </section>
+<script>
+    let loginChk = '<?php echo $_SESSION['user'];?>';
+
+</script>

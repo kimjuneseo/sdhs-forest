@@ -8,7 +8,7 @@ $get(
     "/write@View@write",
     "/item/more/:idx@Item@more",
     "/item/delete/:idx@Item@delete",
-
+    "/item/good/:idx@Item@goodInsert"
 );
 
 $post(

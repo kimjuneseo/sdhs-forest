@@ -16,7 +16,17 @@ class Item{
             go("/","글 등록이 완료 되었습니다");
         }
     }
-    function 
+    function goodInsert($parm){
+        $idx = $parm[1];
+        header('HTTP/1.1 200 ok');
+        header('Content-Type: application/json; charset=UTF-8');
+
+        $response = (object) [];
+        query("isnert into `good_tbl` (`user_idx`, `content_idx`) values(?,?)", [$_SESSION['user']->idx, $idx]);
+        $cnt =  fetch("select cnt(*)  from `good_tbl` where content_idx = ?", $idx);
+        var_dump($cnt);
+        
+    }
     function more($parm){
         $item = fetch("select * from `content_tbl` where idx = ?", [$parm[1]]);
         $comment = fetchAll("SELECT `name`,`content`, `profile` FROM `comment_tbl` a INNER JOIN `user_tbl` b on a.user_idx = b.idx WHERE a.item_idx = ?", [$parm[1]]);
@@ -27,7 +37,6 @@ class Item{
         if(ss()){
             $chk = $_SESSION['user']->idx == $item->user_idx;
             $checkMe = fetch("SELECT * FROM `good_tbl` where user_idx = ? and content_idx = ?", [$_SESSION['user']->idx, $parm[1]]);
-            var_dump($checkMe);
             $meGood = $checkMe ? true : false;
         }
         view("more", ["item"=>$item, "chk"=>$chk, "comment"=>$comment, "meGood" => $meGood, "allGood" => $allGood->cnt]);

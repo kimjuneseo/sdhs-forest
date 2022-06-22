@@ -15,7 +15,9 @@ function morePageFn(){
     const $goodEl = document.querySelector(".goodSpan");
     $goodChkBox.addEventListener("input", function(){
         $goodEl.innerText = this.checked ? +$goodEl.innerText+1 : $goodEl.innerText-1;
-        
+        let idx = document.querySelector("section").dataset.idx;        console.log(idx);
+        // let data = _get(`/item/good/${idx}`);
+        // console.log(loginChk);
     });
 }
 
